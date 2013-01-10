@@ -1,0 +1,1 @@
+A starter point for a new Corona sdk project
