@@ -17,6 +17,15 @@ system.activate("multitouch")
 _H = display.contentHeight
 _W = display.contentWidth
 
+-- Show background
+local background = display.newImage("images/background.png")
+
+-- Load background music
+local music = audio.loadStream("sounds/music.mp3")
+
+-- Loop background music
+audio.play(music, {loops =- 1});
+
 -- Create a new text field using native device font
 local screenText = display.newText("Hello World!", 0, 0, native.systemFontBold, 72)
 
@@ -26,5 +35,5 @@ screenText.yScale = 0.5
 -- Change the center point to bottom left
 screenText:setReferencePoint(display.BottomCenterReferencePoint)
 
-
+-- Show FPS 
 showFps()
