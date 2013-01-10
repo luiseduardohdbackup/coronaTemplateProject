@@ -27,7 +27,7 @@ local music = audio.loadStream("sounds/music.mp3")
 audio.play(music, {loops =- 1});
 
 -- Create a new text field using native device font
-local screenText = display.newText("Hello World!", 0, 0, native.systemFontBold, 72)
+local screenText = display.newText("Hello World!", 0, 100, native.systemFontBold, 72)
 
 screenText.xScale = 0.5
 screenText.yScale = 0.5
