@@ -1,15 +1,15 @@
 function paintPoly(poly, xoffset, yoffset, rgba)
  
-    local newLine = display.newLine
+    local newLine    = display.newLine
     local math_floor = math.floor
-    local math_min = math.min
-    local math_max = math.max
-    local polyGroup = display.newGroup()
- 
-    local n = #poly
- 
-    local minY = poly[1].y
-    local maxY = poly[1].y
+    local math_min   = math.min
+    local math_max   = math.max
+    local polyGroup  = display.newGroup()
+    
+    local n          = #poly
+    
+    local minY       = poly[1].y
+    local maxY       = poly[1].y
  
     for i = 2, n do
         minY = math_min(minY, poly[i].y)
@@ -53,4 +53,38 @@ function paintPoly(poly, xoffset, yoffset, rgba)
     end
  
     return polyGroup
+end
+
+function isPointInPoly(poly, point)
+
+    local  polySides = #poly
+    local  polyX     = {}
+    local  polyY     = {}
+    
+    local  pointX    = point[1]
+    local  pointY    = point[2]
+    
+    local j          = polySides
+    local oddNodes   = false
+
+    for i,v in ipairs(poly) 
+        do 
+            polyX[i] = v.x
+            polyY[i] = v.y
+        end
+
+    for i = 1, polySides 
+        do
+            if (polyY[i] < pointY and polyY[j] >= pointY 
+                or polyY[j] < pointY and polyY[i] >= pointY) 
+                and  (polyX[i] <= pointX or polyX[j] <= pointX) then
+
+                if (polyX[i] + (pointY - polyY[i]) / (polyY[j] - polyY[i]) * (polyX[j] - polyX[i]) < pointX) then
+                    oddNodes = not oddNodes
+                end
+
+            end
+            j = i
+        end
+    return oddNodes
 end

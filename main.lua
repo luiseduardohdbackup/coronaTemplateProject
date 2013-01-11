@@ -18,7 +18,9 @@ _H = display.contentHeight
 _W = display.contentWidth
 
 -- Show background
-local background = display.newImage("images/background.png")
+local background = display.newImageRect("images/background.png", display.contentWidth, display.contentHeight)
+background:setReferencePoint( display.TopLeftReferencePoint )
+background.x, background.y = 0, 0
 
 -- -- Load background music
 -- local music = audio.loadStream("sounds/music.mp3")
@@ -39,38 +41,19 @@ local background = display.newImage("images/background.png")
 showFps()
 
 require "polygon"
- 
-colors = {  {128,255,255,255}, {255,128,255,255}, {255,255,255,255}}
- 
-myStar = {
-        {x=0,y=-110},
-        {x=27,y=-35},
-        {x=105,y=-35},
-        {x=43,y=16},
-        {x=65,y=90},
-        {x=0,y=45},
-        {x=-65,y=90},
-        {x=-43,y=15},
-        {x=-105,y=-35},
-        {x=-27,y=-35},
-        {x=0,y=-110},
-}
- 
-myRectangle = {
-   {x=40,y=100},
-   {x=180,y=100},
-   {x=180,y=50},
-   {x=40,y=50},
-}
 
-hg = {
-	{x=100,y=100},
-	{x=200,y=100},
-	{x=100,y=200},
-	{x=200,y=200}
+hg = 
+{
+  {x = _W / 4.4,  y = _H / 3.85},
+  {x = _W / 2.08, y = _H / 4.92},
+  {x = _W / 1.29, y = _H / 1.88},
+  {x = _W / 1.06, y = _H / 2.46},
+  {x = _W / 1.23, y = _H / 1.12},
+  {x = _W / 1.9, y = _H / 1.13},
+  {x = _W / 2.6, y = _H / 1.27},
+  {x = _W / 3.1, y = _H / 1.5}
 }
  
-paintPoly(hg, 0, 0, colors[1]) 
--- paintPoly(myStar, 160, 240, colors[1])
--- paintPoly(myStar, 220, 260, colors[2])
--- paintPoly(myRectangle, 0, 0, colors[3])
+paintPoly(hg, 0, 0, {255,255,255,150})
+
+print(isPointInPoly(hg, {160, 90}))
